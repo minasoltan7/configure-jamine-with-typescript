@@ -1,0 +1,1 @@
+# configure-jamine-with-typescript
