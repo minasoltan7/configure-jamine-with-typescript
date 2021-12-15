@@ -1,36 +1,58 @@
-import arrays from "./../utilities/arrays";
-import numbers from "./../utilities/numbers";
-import strings from "./../utilities/strings";
-import index from "./../index";
+import countries from "../index";
 
-it("expect arrays.addArr(numArr) to equal 18 ",()=>{
-    expect(arrays.addArr(index.numArr)).toEqual(18);
-})
+it("should get basic data on the country canada", async () => {
+  const data = await countries.getCountry('canada');
+  expect(data).toEqual({
+    capital: 'Ottawa',
+    region: 'Americas',
+    numericCode: '124'
+  });
+});
 
-
-it("expect arrays.concatArr(numArr, wordArr) to equal [3, 4, 5, 6,'cat', 'dog', 'rabbit', 'bird']",()=>{
-    expect(arrays.concatArr(index.numArr, index.wordArr)).toEqual([3, 4, 5, 6,'cat', 'dog', 'rabbit', 'bird'])
-})
-
-it("expect arrays.cut3([1,2,3]) to equal [1,2]",()=>{
-    expect(arrays.cut3([1,2,3])).not.toEqual([1,2,3])
-})
+/** Add test for getRegionCountries function here */
 
 
-it("expect numbers.sum(1,2,3) toBeCloseTo 6",()=>{
-    expect(numbers.sum(1,2)).toBeCloseTo(3,0);
-})
+it("should get capitals of AFRICA countries", async () => {
+  const data = await countries.getRegionCapitals('africa');
+  expect(data).toEqual([
+    'Moroni',       'Cairo',        'Ouagadougou', 'Maseru',
+    'Lomé',         'Antananarivo', 'Port Louis',  'Mbabane',
+    'Lilongwe',     'Gaborone',     'Djibouti',    'Brazzaville',
+    'Lusaka',       'Conakry',      'Kigali',      'Kinshasa',
+    'Asmara',       'El Aaiún',     'Niamey',      'Algiers',
+    'Mogadishu',    'Yaoundé',      'Gitega',      'Bamako',
+    'Dodoma',       'Windhoek',     'Khartoum',    'Bissau',
+    'Abuja',        'Yamoussoukro', 'Tunis',       'Nouakchott',
+    'Praia',        'Kampala',      'Luanda',      'Rabat',
+    'Tripoli',      'Victoria',     'Freetown',    'Accra',
+    'Juba',         'Maputo',       'Harare',      'Porto-Novo',
+    'São Tomé',     'Addis Ababa',  'Pretoria',    "N'Djamena",
+    'Monrovia',     'Libreville',   'Mamoudzou',   'Malabo',
+    'Bangui',       'Dakar',        'Saint-Denis', 'Banjul',
+    'Diego Garcia', 'Nairobi',      'Jamestown'
+  ]);
+});
 
 
-it("expect strings.Capilatize('the world is beautiful') toMatch(\"World\")",()=>{
-    expect(strings.capitalize("the world is beautiful")).toMatch("World");
-})
 
-
-it("expect numbers.multiply(5,5) toBeGreaterThan(24)",()=>{
-    expect(numbers.multiply(5,5)).toBeGreaterThan(24);
-})
-
-it("expect arrays.lgNum([0,1]) not to be Null ",()=>{
-    expect(arrays.lgNum([0,1])).not.toBeNull()
-})
+it("should get all countries in Europe", async () => {
+    const data = await countries.getRegionCountries('EU');
+    expect(data).toEqual([
+        'Åland Islands',  'Austria',
+        'Belgium',        'Bulgaria',
+        'Croatia',        'Cyprus',
+        'Czech Republic', 'Denmark',
+        'Estonia',        'Finland',
+        'France',         'French Guiana',
+        'Germany',        'Gibraltar',
+        'Greece',         'Hungary',
+        'Ireland',        'Isle of Man',
+        'Italy',          'Latvia',
+        'Lithuania',      'Luxembourg',
+        'Malta',          'Netherlands',
+        'Poland',         'Portugal',
+        'Romania',        'Slovakia',
+        'Slovenia',       'Spain',
+        'Sweden'
+      ]);
+  });
